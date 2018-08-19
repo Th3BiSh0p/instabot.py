@@ -112,6 +112,14 @@ def get_username_random(self):
     else:
         return False
 
+def get_follow_user_count(self):
+    """ Gets count of followed users"""
+    count = self.follows_db_c.execute("SELECT count(username_id) FROM usernames WHERE unfollow_count=0").fetchone()
+    if count:
+        return count
+    else:
+        return False
+
 def check_and_insert_user_agent(self, user_agent):
     """ Check user agent  """
     qry = "SELECT settings_val from settings where settings_name = 'USERAGENT'"
